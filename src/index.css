@@ -1,79 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+/* ─── Design Tokens ───────────────────────────── */
 @theme {
-  --animate-fade-in: fade-in 0.6s ease-out forwards;
-  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
-  --animate-fade-in-down: fade-in-down 0.6s ease-out forwards;
-  --animate-fade-in-left: fade-in-left 0.6s ease-out forwards;
-  --animate-fade-in-right: fade-in-right 0.6s ease-out forwards;
-  --animate-scale-in: scale-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  --animate-draw: draw 2s ease-in-out forwards;
-  --animate-float: float 3s ease-in-out infinite;
-
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fade-in-down {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fade-in-left {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes fade-in-right {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes scale-in {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  @keyframes draw {
-    from { stroke-dashoffset: 2000; opacity: 0; }
-    to { stroke-dashoffset: 0; opacity: 1; }
-  }
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-  }
+  --color-primary:       #004b87;
+  --color-primary-light: #1b6fbf;
+  --color-accent:        #e85d24;
+  --color-accent-dark:   #c94e1a;
+  --color-section-blue:  #2c82c9;
+  --color-card-blue:     #1b5e9e;
+  --color-bg-light:      #e6f4fc;
 }
 
+/* ─── Base ────────────────────────────────────── */
 @layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    @apply antialiased text-slate-800 bg-slate-50 scroll-smooth;
-    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+    color: #1e293b;
   }
 }
 
-.animation-delay-200 { animation-delay: 200ms; }
-.animation-delay-400 { animation-delay: 400ms; }
-.animation-delay-600 { animation-delay: 600ms; }
-.animation-delay-800 { animation-delay: 800ms; }
-.animation-delay-1000 { animation-delay: 1000ms; }
-.animation-delay-1200 { animation-delay: 1200ms; }
-.animation-delay-1400 { animation-delay: 1400ms; }
-.animation-delay-1600 { animation-delay: 1600ms; }
-.animation-delay-1800 { animation-delay: 1800ms; }
-.animation-delay-2000 { animation-delay: 2000ms; }
+/* ─── Scrollbar ───────────────────────────────── */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #9ab; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #789; }
 
-/* Hide scrollbar for clean look */
-::-webkit-scrollbar {
-  width: 8px;
+/* ═══════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-::-webkit-scrollbar-track {
-  background: transparent;
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-36px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes underlineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes pulse-cta {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,93,36,0.55); }
+  50%       { box-shadow: 0 0 0 10px rgba(232,93,36,0); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes tabSlide {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATION CLASSES
+═══════════════════════════════════════════════ */
+.anim-fade-in-up   { animation: fadeInUp   0.65s cubic-bezier(.22,1,.36,1) both; }
+.anim-fade-in-down { animation: fadeInDown 0.65s cubic-bezier(.22,1,.36,1) both; }
+.anim-fade-in-left { animation: fadeInLeft 0.65s cubic-bezier(.22,1,.36,1) both; }
+.anim-fade-in-right{ animation: fadeInRight 0.65s cubic-bezier(.22,1,.36,1) both; }
+.anim-scale-in     { animation: scaleIn    0.55s cubic-bezier(.22,1,.36,1) both; }
+.anim-slide-down   { animation: slideDown  0.45s cubic-bezier(.22,1,.36,1) both; }
+.anim-tab-slide    { animation: tabSlide   0.3s  cubic-bezier(.22,1,.36,1) both; }
+.anim-float        { animation: float 3.5s ease-in-out infinite; }
+
+/* Invisible until triggered */
+.pre-anim { opacity: 0; }
+
+/* ─── Stagger delays ──────────────────────────── */
+.delay-0   { animation-delay:   0ms; }
+.delay-75  { animation-delay:  75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+.delay-900 { animation-delay: 900ms; }
+.delay-1000{ animation-delay:1000ms; }
+.delay-1100{ animation-delay:1100ms; }
+.delay-1200{ animation-delay:1200ms; }
+
+/* ─── Heading underline ───────────────────────── */
+.section-heading {
+  position: relative;
+  display: inline-block;
+}
+.section-heading::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: #e85d24;
+  transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+}
+.section-heading.in-view::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ─── CTA pulse button ────────────────────────── */
+.btn-pulse {
+  animation: pulse-cta 2.2s ease-in-out infinite;
+}
+
+/* ─── Card hover lift ─────────────────────────── */
+.card-hover {
+  transition: transform 0.28s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.28s cubic-bezier(.22,1,.36,1);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,75,135,0.18);
+}
+
+/* ─── Pillar card hover ───────────────────────── */
+.pillar-card {
+  transition: transform 0.28s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.28s cubic-bezier(.22,1,.36,1),
+              background  0.25s ease;
+}
+.pillar-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0,75,135,0.28);
+  background: #154e82 !important;
+}
+
+/* ─── Button press ────────────────────────────── */
+.btn-press {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn-press:active { transform: scale(0.96); }
+
+/* ─── Nav link underline ──────────────────────── */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: #e85d24;
+  border-radius: 1px;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* ─── Shimmer text ────────────────────────────── */
+.text-shimmer {
+  background: linear-gradient(90deg, #e85d24 30%, #ff9a5c 50%, #e85d24 70%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ─── Instructor card hover ───────────────────── */
+.instructor-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.instructor-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0,75,135,0.2);
+  border-color: #1b5e9e !important;
+}
+
+/* ─── Tab button transition ───────────────────── */
+.tab-btn {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.tab-btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: #e85d24;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.tab-btn.active::before { transform: scaleX(1); }
+
+/* ─── Carousel slide ──────────────────────────── */
+.carousel-slide {
+  animation: fadeInUp 0.4s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* ─── Reason card hover ───────────────────────── */
+.reason-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.reason-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(0,75,135,0.16);
+}
+
+/* ─── Input focus glow ────────────────────────── */
+.form-input {
+  width: 100%;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid #c9ddf0;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #1e293b;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-input:focus {
+  border-color: #1b5e9e;
+  box-shadow: 0 0 0 3px rgba(27,95,158,0.18);
+}
+
+/* ─── Floating image ──────────────────────────── */
+.img-float { animation: float 4s ease-in-out infinite; }
+
+/* ─── Scroll offset for sticky header ────────────
+   Ensures section titles are never hidden beneath
+   the sticky navbar when scrolling to an anchor.
+   The 88px covers the navbar height (~72px) + 16px
+   breathing room, matching the JS scrollTo offset.
+──────────────────────────────────────────────── */
+section[id],
+div[id] {
+  scroll-margin-top: 88px;
 }

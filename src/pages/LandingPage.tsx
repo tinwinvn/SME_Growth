@@ -1,63 +1,48 @@
-import { Header } from "../components/Header";
-import { HeroText } from "../components/HeroText";
-import { Footer } from "../components/Footer";
-import bgImage from "../assets/bg.jpg";
-import { GrowthArrow } from "../components/GrowthArrow";
-
-// Sections
-import { Objectives } from "../components/sections/Objectives";
-import { TargetAudience } from "../components/sections/TargetAudience";
-import { Curriculum } from "../components/sections/Curriculum";
-import { WhyChooseUs } from "../components/sections/WhyChooseUs";
-import { Certification } from "../components/sections/Certification";
-import { Process } from "../components/sections/Process";
-import { Pricing } from "../components/sections/Pricing";
-import { Demo } from "../components/sections/Demo";
-import { Events } from "../components/sections/Events";
-import { Instructors } from "../components/sections/Instructors";
-import { RegistrationForm } from "../components/sections/RegistrationForm";
-import { CTA } from "../components/sections/CTA";
-import { Newsletter } from "../components/sections/Newsletter";
-import { PromoBanner } from "../components/sections/PromoBanner";
-import { RelatedPrograms } from "../components/sections/RelatedPrograms";
+import { useState, useEffect } from "react";
+import { Navbar } from "../components/sections/landing/Navbar";
+import { HeroSection } from "../components/sections/landing/HeroSection";
+import { AboutSection } from "../components/sections/landing/AboutSection";
+import { ObjectivesSection } from "../components/sections/landing/ObjectivesSection";
+import { CommitmentsSection } from "../components/sections/landing/CommitmentsSection";
+import { AudienceSection } from "../components/sections/landing/AudienceSection";
+import { CurriculumSection } from "../components/sections/landing/CurriculumSection";
+import { InstructorsSection } from "../components/sections/landing/InstructorsSection";
+import { WhyJoinSection } from "../components/sections/landing/WhyJoinSection";
+import { RegistrationSection } from "../components/sections/landing/RegistrationSection";
+import { FooterSection } from "../components/sections/landing/FooterSection";
 
 export const LandingPage = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const header = document.querySelector("header") as HTMLElement | null;
+    const headerH = header ? header.offsetHeight : 72;
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - headerH - 16;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
   return (
-    <div className="relative min-h-screen bg-blue-900 font-sans selection:bg-orange-500 selection:text-white">
-      {/* Hero Background */}
-      <div className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center pt-20">
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-bottom opacity-50 mix-blend-overlay"
-          style={{ backgroundImage: `url(${bgImage})` }}
-        />
-        <div className="absolute inset-0 z-0 bg-linear-to-b from-blue-900/90 via-blue-800/80 to-blue-950/90 mix-blend-multiply" />
-        
-        <GrowthArrow />
-        
-        <Header />
-        <HeroText />
-      </div>
-
-      {/* Main Content Sections */}
-      <main className="bg-white z-10 relative">
-        <Objectives />
-        <TargetAudience />
-        <Curriculum />
-        <WhyChooseUs />
-        <Certification />
-        <Process />
-        <Pricing />
-        <Demo />
-        <Events />
-        <Instructors />
-        <PromoBanner />
-        <RegistrationForm />
-        <CTA />
-        <Newsletter />
-        <RelatedPrograms />
-      </main>
-
-      <Footer />
+    <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+      <Navbar scrolled={scrolled} scrollTo={scrollTo} />
+      <HeroSection />
+      <AboutSection />
+      <ObjectivesSection />
+      <CommitmentsSection />
+      <AudienceSection />
+      <CurriculumSection />
+      <InstructorsSection />
+      <WhyJoinSection />
+      <RegistrationSection />
+      <FooterSection />
     </div>
   );
 };
