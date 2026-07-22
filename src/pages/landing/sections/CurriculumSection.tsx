@@ -18,7 +18,7 @@ export const CurriculumSection = () => {
               <button
                 key={i}
                 onClick={() => setActiveTab(i)}
-                className={`tab-btn flex-1 py-4 px-4 text-sm font-bold uppercase text-center border-r last:border-r-0 border-gray-300 ${activeTab === i ? "active bg-card-blue text-white" : "bg-white text-[#555]"}`}
+                className={`tab-btn flex-1 py-4 px-4 text-sm font-bold uppercase text-center border-r last:border-r-0 border-gray-300 transition-all duration-300 ${activeTab === i ? "active bg-card-blue text-white cursor-default" : "bg-white text-[#555] hover:bg-[#e0edf8] hover:text-card-blue cursor-pointer"}`}
               >
                 {t.label}
               </button>

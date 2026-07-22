@@ -8,7 +8,7 @@ export const InstructorAvatar = ({ name }: { name: string }) => {
   ];
   const colorIdx = name.charCodeAt(name.length - 1) % colors.length;
   return (
-    <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 text-white font-extrabold text-lg shrink-0 mx-auto ${colors[colorIdx]}`}>
+    <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 text-white font-extrabold text-lg shrink-0 mx-auto transition-transform duration-300 group-hover:scale-110 ${colors[colorIdx]}`}>
       {initial}
     </div>
   );

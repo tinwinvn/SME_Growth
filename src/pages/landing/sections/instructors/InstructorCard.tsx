@@ -13,7 +13,7 @@ export const InstructorCard = ({
 
   return (
     <div
-      className={`instructor-card flex flex-col items-center text-center bg-white border border-[#d0e4f5] rounded-xl p-5 shadow-sm ${hasDualRole ? "min-h-55" : "min-h-42.5"}`}
+      className={`instructor-card group flex flex-col items-center text-center bg-white border border-[#d0e4f5] rounded-xl p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#b0d4f5] cursor-default ${hasDualRole ? "min-h-55" : "min-h-42.5"}`}
       style={{
         animationDelay: `${delay}ms`,
       }}

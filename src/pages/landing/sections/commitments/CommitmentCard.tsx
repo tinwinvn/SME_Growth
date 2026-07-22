@@ -27,7 +27,7 @@ export const CommitmentCard = ({
   delay: number;
 }) => (
   <AnimateIn animation="anim-fade-in-up" delay={delay}>
-    <div className="bg-white rounded-xl p-5 h-36 shadow-[0_4px_20px_rgba(27,94,158,0.10),0_1px_4px_rgba(0,0,0,0.06)]">
+    <div className="bg-white rounded-xl p-5 h-36 shadow-[0_4px_20px_rgba(27,94,158,0.10),0_1px_4px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(27,94,158,0.15)] cursor-default">
       <p className="font-bold text-sm leading-snug text-card-blue">
         {item.title}
       </p>
