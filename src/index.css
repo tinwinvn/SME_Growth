@@ -257,14 +257,37 @@
   outline: none;
   font-family: 'Inter', sans-serif;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: auto;
 }
 .form-input:focus {
   border-color: #1b5e9e;
   box-shadow: 0 0 0 3px rgba(27,95,158,0.18);
 }
+textarea.form-input {
+  min-height: 80px;
+  line-height: 1.5;
+}
 
 /* ─── Floating image ──────────────────────────── */
 .img-float { animation: float 4s ease-in-out infinite; }
+
+/* ─── Reduced section vertical gaps ───────────── */
+/* §1 of requirements-v3: reduce excessive vertical spacing */
+@media (min-width: 768px) {
+  section + section { margin-top: 0; }
+}
+
+/* ─── Highlight / funding box ─────────────────── */
+.highlight-box {
+  background: linear-gradient(135deg, #fff8f0 0%, #fff3e8 100%);
+  border-left: 4px solid #e85d24;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
 
 /* ─── Scroll offset for sticky header ────────────
    Ensures section titles are never hidden beneath

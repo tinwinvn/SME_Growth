@@ -25,14 +25,7 @@ export const FieldGroup = ({
   className?: string;
 }) => (
   <div className={className}>
-    <h3
-      className="font-bold mb-5 text-sm uppercase tracking-wider"
-      style={{
-        color: "#1b5e9e",
-        borderBottom: "1px solid #c9ddf0",
-        paddingBottom: "0.75rem",
-      }}
-    >
+    <h3 className="font-bold mb-5 text-sm uppercase tracking-wider text-card-blue border-b border-[#c9ddf0] pb-3">
       {label}
     </h3>
     {children}
