@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import { Navbar } from "../components/sections/landing/Navbar";
-import { HeroSection } from "../components/sections/landing/HeroSection";
-import { AboutSection } from "../components/sections/landing/AboutSection";
-import { ObjectivesSection } from "../components/sections/landing/ObjectivesSection";
-import { CommitmentsSection } from "../components/sections/landing/CommitmentsSection";
-import { AudienceSection } from "../components/sections/landing/AudienceSection";
-import { CurriculumSection } from "../components/sections/landing/CurriculumSection";
-import { InstructorsSection } from "../components/sections/landing/InstructorsSection";
-import { WhyJoinSection } from "../components/sections/landing/WhyJoinSection";
-import { RegistrationSection } from "../components/sections/landing/RegistrationSection";
-import { FooterSection } from "../components/sections/landing/FooterSection";
+import { Navbar } from "./landing/sections/Navbar";
+import { HeroSection } from "./landing/sections/HeroSection";
+import { AboutSection } from "./landing/sections/AboutSection";
+import { ObjectivesSection } from "./landing/sections/ObjectivesSection";
+import { CommitmentsSection } from "./landing/sections/CommitmentsSection";
+import { AudienceSection } from "./landing/sections/AudienceSection";
+import { TrainingFundingSection } from "./landing/sections/TrainingFundingSection";
+import { CurriculumSection } from "./landing/sections/CurriculumSection";
+import { InstructorsSection } from "./landing/sections/InstructorsSection";
+import { WhyJoinSection } from "./landing/sections/WhyJoinSection";
+import { RegistrationSection } from "./landing/sections/RegistrationSection";
+import { FooterSection } from "./landing/sections/FooterSection";
 
 export const LandingPage = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -31,13 +32,14 @@ export const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="min-h-screen bg-white font-['Inter',sans-serif]">
       <Navbar scrolled={scrolled} scrollTo={scrollTo} />
       <HeroSection />
       <AboutSection />
       <ObjectivesSection />
       <CommitmentsSection />
       <AudienceSection />
+      <TrainingFundingSection />
       <CurriculumSection />
       <InstructorsSection />
       <WhyJoinSection />
