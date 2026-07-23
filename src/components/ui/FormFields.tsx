@@ -1,10 +1,12 @@
 export const FormField = ({
   label,
   required,
+  error,
   children,
 }: {
   label: string;
   required?: boolean;
+  error?: string;
   children: React.ReactNode;
 }) => (
   <div className="flex flex-col gap-1.5">
@@ -12,6 +14,9 @@ export const FormField = ({
       {label} {required && <span className="text-red-500">*</span>}
     </label>
     {children}
+    {error && (
+      <span className="text-xs text-red-500 mt-0.5">{error}</span>
+    )}
   </div>
 );
 
