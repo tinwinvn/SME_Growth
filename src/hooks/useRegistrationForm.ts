@@ -18,6 +18,13 @@ export interface RegistrationFormData {
 
 export interface FormErrors {
   tenDoanhNghiep?: string;
+  loaiHinh?: string;
+  quyMo?: string;
+  linhVuc?: string;
+  vanDe?: string;
+  noiDung?: string;
+  tenNguoiLienHe?: string;
+  chucVu?: string;
   email?: string;
   soDienThoai?: string;
 }
@@ -44,12 +51,43 @@ function validate(data: RegistrationFormData): FormErrors {
     errors.tenDoanhNghiep = "Vui lòng nhập tên doanh nghiệp.";
   }
 
-  if (data.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+  if (!data.loaiHinh) {
+    errors.loaiHinh = "Vui lòng chọn loại hình doanh nghiệp.";
+  }
+
+  if (!data.quyMo) {
+    errors.quyMo = "Vui lòng chọn quy mô doanh nghiệp.";
+  }
+
+  if (!data.linhVuc.trim()) {
+    errors.linhVuc = "Vui lòng nhập lĩnh vực hoạt động.";
+  }
+
+  if (!data.vanDe.trim()) {
+    errors.vanDe = "Vui lòng mô tả vấn đề doanh nghiệp đang gặp phải.";
+  }
+
+  if (!data.noiDung) {
+    errors.noiDung = "Vui lòng chọn nội dung đăng ký tham gia.";
+  }
+
+  if (!data.tenNguoiLienHe.trim()) {
+    errors.tenNguoiLienHe = "Vui lòng nhập tên người liên hệ.";
+  }
+
+  if (!data.chucVu.trim()) {
+    errors.chucVu = "Vui lòng nhập chức vụ.";
+  }
+
+  if (!data.email.trim()) {
+    errors.email = "Vui lòng nhập email liên hệ.";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
     errors.email = "Email không hợp lệ.";
   }
 
-  if (
-    data.soDienThoai.trim() &&
+  if (!data.soDienThoai.trim()) {
+    errors.soDienThoai = "Vui lòng nhập số điện thoại.";
+  } else if (
     !/^(0|\+84)[0-9]{8,10}$/.test(data.soDienThoai.trim())
   ) {
     errors.soDienThoai = "Số điện thoại không hợp lệ (ví dụ: 0912345678).";

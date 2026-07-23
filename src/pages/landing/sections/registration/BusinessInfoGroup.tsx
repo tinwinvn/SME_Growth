@@ -39,11 +39,12 @@ export const BusinessInfoGroup = ({ formData, errors, onChange }: Props) => (
         />
       </FormField>
 
-      <FormField label="Loại hình doanh nghiệp">
+      <FormField label="Loại hình doanh nghiệp" required error={errors.loaiHinh}>
         <select
           id="f-loai-hinh"
           name="loaiHinh"
-          className="form-input"
+          className={`form-input${errors.loaiHinh ? " input-error" : ""}`}
+          required
           value={formData.loaiHinh}
           onChange={onChange}
         >
@@ -56,11 +57,12 @@ export const BusinessInfoGroup = ({ formData, errors, onChange }: Props) => (
         </select>
       </FormField>
 
-      <FormField label="Quy mô doanh nghiệp">
+      <FormField label="Quy mô doanh nghiệp" required error={errors.quyMo}>
         <select
           id="f-quy-mo"
           name="quyMo"
-          className="form-input"
+          className={`form-input${errors.quyMo ? " input-error" : ""}`}
+          required
           value={formData.quyMo}
           onChange={onChange}
         >
@@ -73,13 +75,14 @@ export const BusinessInfoGroup = ({ formData, errors, onChange }: Props) => (
         </select>
       </FormField>
 
-      <FormField label="Lĩnh vực hoạt động">
+      <FormField label="Lĩnh vực hoạt động" required error={errors.linhVuc}>
         <input
           id="f-linh-vuc"
           name="linhVuc"
           type="text"
           placeholder="Nhập lĩnh vực hoạt động"
-          className="form-input"
+          className={`form-input${errors.linhVuc ? " input-error" : ""}`}
+          required
           value={formData.linhVuc}
           onChange={onChange}
         />
@@ -87,12 +90,13 @@ export const BusinessInfoGroup = ({ formData, errors, onChange }: Props) => (
     </div>
 
     <div className="mt-5">
-      <FormField label="Vấn đề doanh nghiệp đang gặp phải">
+      <FormField label="Vấn đề doanh nghiệp đang gặp phải" required error={errors.vanDe}>
         <textarea
           id="f-van-de"
           name="vanDe"
           placeholder="Mô tả vấn đề doanh nghiệp đang gặp phải..."
-          className="form-input resize-y"
+          className={`form-input resize-y${errors.vanDe ? " input-error" : ""}`}
+          required
           rows={3}
           value={formData.vanDe}
           onChange={onChange}
@@ -101,11 +105,12 @@ export const BusinessInfoGroup = ({ formData, errors, onChange }: Props) => (
     </div>
 
     <div className="mt-5">
-      <FormField label="Nội dung đăng ký tham gia">
+      <FormField label="Nội dung đăng ký tham gia" required error={errors.noiDung}>
         <select
           id="f-noi-dung"
           name="noiDung"
-          className="form-input"
+          className={`form-input${errors.noiDung ? " input-error" : ""}`}
+          required
           value={formData.noiDung}
           onChange={onChange}
         >
